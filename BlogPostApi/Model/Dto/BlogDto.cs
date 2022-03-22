@@ -28,6 +28,7 @@ namespace BlogPostApi.Model.Dto
         public string Comment { get; set; }
         public string CommentId { get; set; }
         public string BlogId { get; set; }
+        public DateTime DateCreated { get; set; }
         public List<Replies> replies { get; set; }
     }
 }

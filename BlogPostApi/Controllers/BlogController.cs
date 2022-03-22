@@ -37,7 +37,7 @@ namespace BlogPostApi.Controllers
             {
                 foreach(var item in dblist.Comment)
                 {
-                    Replydto replydto = new Replydto() { BlogId = BlogId, Comment = item.comment, replies = dblist.Replies?.Count() > 0 ? dblist.Replies.ToList().Where(x => x.CommentId == item.Id).ToList() : replies ,CommentId = item.Id,username = item.username};
+                    Replydto replydto = new Replydto() { BlogId = BlogId,DateCreated= item.DateCommented != null?item.DateCommented.Value:DateTime.Now, Comment = item.comment, replies = dblist.Replies?.Count() > 0 ? dblist.Replies.ToList().Where(x => x.CommentId == item.Id).ToList() : replies ,CommentId = item.Id,username = item.username};
                     model.Comments.Add(replydto);
                 }
                 //model.Comments = dblist.Comment.ToList();
