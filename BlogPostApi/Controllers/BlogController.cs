@@ -35,7 +35,8 @@ namespace BlogPostApi.Controllers
             }
             else
             {
-                return null;
+                List<Comment> mode = null;
+                return mode;
             }
         }
 
