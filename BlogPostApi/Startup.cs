@@ -6,6 +6,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Microsoft.Net.Http.Headers;
 using Microsoft.OpenApi.Models;
 using System;
 using System.Collections.Generic;
@@ -58,6 +59,16 @@ namespace BlogPostApi
             app.UseRouting();
 
             app.UseAuthorization();
+            app.UseCors(policy =>
+         policy.WithOrigins("https://bebeblog.herokuapp.com", "https://bebeblog.herokuapp.com/", "*")
+          .AllowAnyMethod()
+          .AllowAnyOrigin()
+          .AllowAnyHeader()
+          .WithHeaders(HeaderNames.ContentType)
+
+                 //.WithHeaders(HeaderNames.ContentType, HeaderNames.Authorization, "x-custom-header")
+                 // .AllowCredentials()
+                 );
 
             app.UseEndpoints(endpoints =>
             {
