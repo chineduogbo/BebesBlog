@@ -11,4 +11,8 @@ namespace BlogPostApi.Model.Dto
         public string Comment { get; set; }
         public string BlogId { get; set; }
     }
+    public class responsedto
+    {
+        public List<Comment> Comments { get; set; }
+    }
 }

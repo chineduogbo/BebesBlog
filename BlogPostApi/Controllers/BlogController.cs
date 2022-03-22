@@ -25,19 +25,17 @@ namespace BlogPostApi.Controllers
         }
         [HttpGet]
 
-        public async Task<List<Comment>> GetAll(string BlogId)
+        public async Task<responsedto> GetAll(string BlogId)
         {
+            responsedto model = new responsedto();
+            model.Comments = new List<Comment>();
             MongoClient dbClient = new MongoClient(_configuration.GetConnectionString("orderxconnection"));
             var dblist = dbClient.GetDatabase("BebesBlog").GetCollection<Blog>("BebesBlog").AsQueryable().Where(x => x.BlogId == BlogId).FirstOrDefault();
             if (dblist != null)
             {
-                return dblist.Comment.ToList();
+                model.Comments = dblist.Comment.ToList();
             }
-            else
-            {
-                List<Comment> mode = new List<Comment>();
-                return mode;
-            }
+            return model;
         }
 
         [HttpPost]
