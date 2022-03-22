@@ -29,7 +29,14 @@ namespace BlogPostApi.Controllers
         {
             MongoClient dbClient = new MongoClient(_configuration.GetConnectionString("orderxconnection"));
             var dblist = dbClient.GetDatabase("BebesBlog").GetCollection<Blog>("BebesBlog").AsQueryable().Where(x => x.BlogId == BlogId).FirstOrDefault();
-            return dblist.Comment.ToList();
+            if (dblist != null)
+            {
+                return dblist.Comment.ToList();
+            }
+            else
+            {
+                return null;
+            }
         }
 
         [HttpPost]
